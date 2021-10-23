@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/androidstuido/file/Bookshow/app/src/main/res/layout/activity_second.xml" value="0.30416666666666664" />
         <entry key="..\:/androidstuido/file/Bookshow/app/src/main/res/layout/itemlayout.xml" value="0.28958333333333336" />
+        <entry key="..\:/androidstuido/file/Bookshow/app/src/main/res/layout/mrecycler.xml" value="0.30416666666666664" />
+        <entry key="..\:/androidstuido/file/Bookshow/app/src/main/res/menu/menu.xml" value="0.30416666666666664" />
       </map>
     </option>
   </component>

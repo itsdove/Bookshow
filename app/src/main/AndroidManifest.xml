@@ -10,6 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bookshow">
         <activity
+            android:name=".SecondActivity"
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.START"></action>
+            <category android:name="android.intent.category.DEFAULT"></category>
+        </intent-filter>
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
