@@ -23,10 +23,20 @@
         android:layout_weight="3"
         android:layout_height="wrap_content"></EditText>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="提交"
-        android:layout_gravity="center"
+        android:text="确定"
         android:id="@+id/b1"></Button>
+
+        <Button
+            android:id="@+id/b2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="取消" />
+    </LinearLayout>
 </LinearLayout>
