@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,95 +84,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public class Adapter extends RecyclerView.Adapter{
-        List<Book> bookList ;
 
-        public Adapter(List<Book> dataList) {
-            this.bookList = dataList;
-        }
-
-        @Override
-        public RecyclerView.ViewHolder  onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemlayout, parent, false);
-            return new MainActivity.Adapter.ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            ViewHolder holders= (ViewHolder)holder;
-            Book book= bookList.get(position);
-            holders.imageView.setImageResource(book.getImgid());
-            holders.textView.setText(book.getTitle());
-        }
-
-
-        @Override
-        public int getItemCount() {
-            return bookList.size();
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder implements MenuItem.OnMenuItemClickListener,View.OnCreateContextMenuListener {
-
-            ImageView imageView;
-            TextView textView;
-
-            public ViewHolder(@NonNull View itemView) {
-                super(itemView);
-                imageView = itemView.findViewById(R.id.image_view_book_cover);
-                textView = itemView.findViewById(R.id.text_view_book_title);
-                itemView.setOnCreateContextMenuListener(this);
-            }
-
-            @Override
-            public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-                MenuItem menuItem1 = menu.add(Menu.NONE, 1, 1, "add");
-                menuItem1.setOnMenuItemClickListener(this);
-                MenuItem menuItem2 = menu.add(Menu.NONE, 2, 2, "DELETE");
-                menuItem2.setOnMenuItemClickListener(this);
-                MenuItem menuItem3 = menu.add(Menu.NONE, 3, 3, "new");
-                menuItem3.setOnMenuItemClickListener(this);
-            }
-
-
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem){
-                int position=getAdapterPosition();
-                switch (menuItem.getItemId()){
-                    case 1:
-                        View dialagueView= LayoutInflater.from(MainActivity.this).inflate(R.layout.dialogview,null);
-                        AlertDialog.Builder alertDialog=new AlertDialog.Builder(MainActivity.this);
-                        alertDialog.setView(dialagueView);
-
-                         alertDialog.setPositiveButton("确定",new DialogInterface.OnClickListener(){
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                EditText editName=dialagueView.findViewById(R.id.de1);
-                                Log.d("m",editName.getText().toString());
-                                bookList.add(position,new Book(editName.getText().toString(),R.drawable.book_1));
-                                Adapter.this.notifyItemInserted(position);
-                            }
-                        });
-                        alertDialog.setCancelable(false).setNegativeButton ("取消",new DialogInterface.OnClickListener(){
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                            }
-                        });
-                        alertDialog.create().show();
-
-
-                        break;
-                    case 2:
-                        bookList.remove(position);
-                       Adapter.this.notifyItemRemoved(position);
-                       break;
-                    case 3:
-                        Intent intent1=new Intent(MainActivity.this,SecondActivity.class);
-                        intent1.putExtra("name",textView.getText().toString());
-                        startActivityForResult(intent1,2);
-                        break;
-                }
-                return true;
-            }
-        }}
 }
