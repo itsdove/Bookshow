@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
         <TextView
-            android:text="书名:"
+            android:text="@string/bookname1"
             android:gravity="center"
             android:id="@+id/dt1"
             android:layout_width="0dp"

@@ -19,19 +19,31 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import java.util.LinkedList;
+
+import com.example.bookshow.data.Book;
+import com.example.bookshow.data.DataPcakage;
+
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    Book book1=new Book("软件项目管理案例教程（第4版）", R.drawable.book_2);
-    Book book2=new Book("创新工程实践", R.drawable.book_no_name);
-    Book book3=new Book("信息安全数学基础（第2版）", R.drawable.book_1);
-    List<Book> bookList=new LinkedList<>();
+    DataPcakage dataPcakage=new DataPcakage();
+    List<Book> bookList;
     static  Adapter adapter;
     RecyclerView recyclerView;
-    private Object MenuItem;
     private int mSelectPosition;
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        dataPcakage.save(MainActivity.this,bookList);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        dataPcakage.save(MainActivity.this,bookList);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -57,17 +69,14 @@ public class MainActivity extends AppCompatActivity {
             case RESULT_CANCELED:
                 break;
         }
-
     }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        bookList=dataPcakage.dataPcakage(MainActivity.this);
         setContentView(R.layout.activity_main);
-        bookList.add(book1);
-        bookList.add(book2);
-        bookList.add(book3);
         recyclerView = findViewById(R.id.recycle_view_books);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -84,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public RecyclerView.ViewHolder  onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemlayout, parent, false);
             return new MainActivity.Adapter.ViewHolder(view);
         }
@@ -93,8 +102,8 @@ public class MainActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
             ViewHolder holders= (ViewHolder)holder;
             Book book= bookList.get(position);
-            holders.imageView.setImageResource(book.imgid);
-            holders.textView.setText(book.Title);
+            holders.imageView.setImageResource(book.getImgid());
+            holders.textView.setText(book.getTitle());
         }
 
 

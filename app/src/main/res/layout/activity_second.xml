@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
     <TextView
-        android:text="书名:"
+        android:text="@string/bookname"
         android:gravity="center"
         android:id="@+id/t1"
         android:layout_width="0dp"
@@ -30,13 +29,13 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="确定"
+        android:text="@string/yes"
         android:id="@+id/b1"></Button>
 
         <Button
             android:id="@+id/b2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="取消" />
+            android:text="@string/no" />
     </LinearLayout>
 </LinearLayout>

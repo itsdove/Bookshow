@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Bookshow</string>
+    <string name="bookname">书名:</string>
+    <string name="yes">确定</string>
+    <string name="no">取消</string>
+    <string name="bookname1">书名:</string>
 </resources>
