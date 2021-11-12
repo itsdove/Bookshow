@@ -4,10 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragmentmj">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycle_view_mjs"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+<WebView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/webview"></WebView>
 
 </FrameLayout>

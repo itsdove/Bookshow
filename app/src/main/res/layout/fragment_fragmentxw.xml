@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".Fragmentxw">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycle_view_xws"
+    <WebView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="match_parent"
+        android:id="@+id/webview2"></WebView>
 
 
 </FrameLayout>
