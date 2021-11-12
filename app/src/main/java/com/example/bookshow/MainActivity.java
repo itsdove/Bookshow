@@ -6,35 +6,82 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+
 import com.example.bookshow.data.Book;
+
 import com.example.bookshow.data.DataPcakage;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    private TabLayout mTabLayout;
+    private ViewPager2 mViewPage;
+    private String[] tabTitles;//tab的标题
+    private List<Fragment> mDatas = new ArrayList<>();//ViewPage2的Fragment容器
+    Fragmentts frgOne = new Fragmentts();
     DataPcakage dataPcakage=new DataPcakage();
-    List<Book> bookList;
-    Adapter adapter;
-    RecyclerView recyclerView;
     private int mSelectPosition;
-
+    @SuppressLint("WrongViewCast")
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        dataPcakage.save(MainActivity.this,bookList);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        initData();
+        //找到控件
+        mTabLayout = findViewById(R.id.tablelayout);
+        mViewPage = findViewById(R.id.viewpage);
+        //创建适配器
+        MyViewPageAdapter mAdapter = new MyViewPageAdapter(this, mDatas);
+        mViewPage.setAdapter(mAdapter);
+
+        //TabLayout与ViewPage2联动关键代码
+        new TabLayoutMediator(mTabLayout, mViewPage, (tab, position) -> tab.setText(tabTitles[position])).attach();
+
+        //ViewPage2选中改变监听
+        mViewPage.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+            }
+        });
+        //TabLayout的选中改变监听
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
     }
 
-    @Override
-    public void finish() {
-        super.finish();
-        dataPcakage.save(MainActivity.this,bookList);
+    //初始化数据
+    private void initData() {
+        tabTitles = new String[]{"图书", "新闻", "卖家"};
+
+        Fragmentxw frgTwo = new Fragmentxw();
+        Fragmentmj frgthree = new Fragmentmj();
+        mDatas.add(frgOne);
+        mDatas.add(frgTwo);
+        mDatas.add(frgthree);
+
     }
 
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu,menu);
         return true;
@@ -53,26 +100,21 @@ public class MainActivity extends AppCompatActivity {
             if(resultCode== RESULT_OK){
                 if(null==data)return;
                 Book book = new Book(data.getStringExtra("name"), R.drawable.book_3);
-                bookList.add(book);
-                adapter.notifyItemChanged(mSelectPosition);
+                frgOne.bookList.add(book);
+                frgOne.adapter.notifyItemChanged(mSelectPosition);
 
             }
         }
     });
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        bookList=dataPcakage.dataPcakage(MainActivity.this);
-        recyclerView = findViewById(R.id.recycle_view_books);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        adapter = new Adapter(bookList);
-        recyclerView.setAdapter(adapter);
+    public void onBackPressed() {
+        super.onBackPressed();
+        dataPcakage.save(MainActivity.this,frgOne.bookList);
     }
 
-
+    @Override
+    public void finish() {
+        super.finish();
+        dataPcakage.save(MainActivity.this,frgOne.bookList);
+    }
 
 }
