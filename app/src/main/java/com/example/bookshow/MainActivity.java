@@ -37,17 +37,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initData();
-        //找到控件
         mTabLayout = findViewById(R.id.tablelayout);
         mViewPage = findViewById(R.id.viewpage);
-        //创建适配器
         MyViewPageAdapter mAdapter = new MyViewPageAdapter(this, mDatas);
         mViewPage.setAdapter(mAdapter);
-
-        //TabLayout与ViewPage2联动关键代码
         new TabLayoutMediator(mTabLayout, mViewPage, (tab, position) -> tab.setText(tabTitles[position])).attach();
-
-        //ViewPage2选中改变监听
         mViewPage.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
@@ -73,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
     //初始化数据
     private void initData() {
         tabTitles = new String[]{"图书", "新闻", "卖家"};
-
         Fragmentxw frgTwo = new Fragmentxw();
         Fragmentmj frgthree = new Fragmentmj();
         mDatas.add(frgOne);
@@ -102,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 Book book = new Book(data.getStringExtra("name"), R.drawable.book_3);
                 frgOne.bookList.add(book);
                 frgOne.adapter.notifyItemChanged(mSelectPosition);
-
+                dataPcakage.save(MainActivity.this,frgOne.bookList);
             }
         }
     });
@@ -111,10 +104,5 @@ public class MainActivity extends AppCompatActivity {
         dataPcakage.save(MainActivity.this,frgOne.bookList);
     }
 
-    @Override
-    public void finish() {
-        super.finish();
-        dataPcakage.save(MainActivity.this,frgOne.bookList);
-    }
 
 }
