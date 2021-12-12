@@ -14,9 +14,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 
-import com.example.bookshow.data.Book;
+import com.example.bookshow.game.Fragmentgame;
+import com.example.bookshow.mj.Fragmentmj;
+import com.example.bookshow.ts.data.Book;
 
-import com.example.bookshow.data.DataPcakage;
+import com.example.bookshow.ts.data.DataPcakage;
+import com.example.bookshow.ts.Fragmentts;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -66,12 +69,14 @@ public class MainActivity extends AppCompatActivity {
 
     //初始化数据
     private void initData() {
-        tabTitles = new String[]{"图书", "新闻", "卖家"};
+        tabTitles = new String[]{"图书", "新闻", "卖家","游戏"};
         Fragmentxw frgTwo = new Fragmentxw();
         Fragmentmj frgthree = new Fragmentmj();
+        Fragmentgame fragmentgame=new Fragmentgame();
         mDatas.add(frgOne);
         mDatas.add(frgTwo);
         mDatas.add(frgthree);
+        mDatas.add(fragmentgame);
 
     }
 

@@ -15,7 +15,7 @@ import android.webkit.WebViewClient;
 
 public class Fragmentxw extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_fragmentxw, container);
+        View view = inflater.inflate(R.layout.fragment_xw, container);
         WebView webView=view.findViewById(R.id.webview2);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());

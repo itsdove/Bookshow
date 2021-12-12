@@ -1,4 +1,4 @@
-package com.example.bookshow;
+package com.example.bookshow.ts;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,7 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookshow.data.Book;
+import com.example.bookshow.R;
+import com.example.bookshow.ts.data.Book;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.bookshow;
+package com.example.bookshow.mj;
 
 import android.app.Application;
 

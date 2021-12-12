@@ -1,4 +1,4 @@
-package com.example.bookshow.data;
+package com.example.bookshow.ts.data;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package com.example.bookshow;
+package com.example.bookshow.mj;
 
 import android.os.Bundle;
 
@@ -29,6 +29,7 @@ import com.baidu.mapapi.map.Overlay;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.TextOptions;
 import com.baidu.mapapi.model.LatLng;
+import com.example.bookshow.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,7 +53,7 @@ public class Fragmentmj extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_fragmentmj, container);
+        View view = inflater.inflate(R.layout.fragment_mj, container);
         mMapView = (MapView) view.findViewById(R.id.bmapView);
         //设定中心点坐标
         LatLng cenpt =  new LatLng(22.255354,113.537369);
