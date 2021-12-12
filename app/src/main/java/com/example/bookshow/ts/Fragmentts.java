@@ -24,7 +24,7 @@ public class Fragmentts extends Fragment {
         View view = inflater.inflate(R.layout.fragment_ts,container);
         bookList=dataPcakage.dataPcakage(getContext());
         recyclerView = view.findViewById(R.id.recycle_view_books);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+       RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         adapter = new Adapter(bookList);
         recyclerView.setAdapter(adapter);

@@ -3,9 +3,12 @@ package com.example.bookshow.game;
 import static java.lang.Math.random;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -13,6 +16,8 @@ import android.view.SurfaceView;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+
+import com.example.bookshow.R;
 
 import java.util.ArrayList;
 
@@ -89,9 +94,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         private boolean isStopped=false;
         public DrawThread()
         {
-            spriters.add(new CirleSpriter(100,100,100,GameView.this.getWidth(),GameView.this.getHeight()));
-            spriters.add(new CirleSpriter(300,300,100,GameView.this.getWidth(),GameView.this.getHeight()));
-        }
+            spriters.add(new CirleSpriter(100,400,400,GameView.this.getWidth(),GameView.this.getHeight()));
+          }
 
         public void myStop()
         {
@@ -106,7 +110,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             while(!isStopped) {
                 try {
                     canvas = surfaceHolder.lockCanvas();
-                    canvas.drawColor(Color.GRAY);
+                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.game1);
+                    Rect rect = new Rect(0, 0, getRight(), getBottom());   //w和h分别是屏幕的宽和高，也就是你想让图片显示的宽和高
+                    canvas.drawBitmap(bitmap,null, rect, null);
                     if(GameView.this.isTouched)
                     {
                         for(int index=0;index<spriters.size();index++)
@@ -123,7 +129,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
                     }
                     for(int index=0;index<spriters.size();index++)
                     {
-                        spriters.get(index).draw(canvas);
+                        spriters.get(index).draw(canvas,getContext());
                     }
                     GameView.this.isTouched=false;
                     Paint paint=new Paint();
@@ -140,7 +146,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
                     }
                 }
                 try {
-                    Thread.sleep(20);
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
