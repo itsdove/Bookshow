@@ -30,10 +30,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/yes"
+        android:textColor="@color/white"
         android:id="@+id/b1"></Button>
 
         <Button
             android:id="@+id/b2"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/no" />

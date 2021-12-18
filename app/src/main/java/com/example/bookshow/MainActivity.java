@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setElevation(0);
         setContentView(R.layout.activity_main);
         initData();
         mTabLayout = findViewById(R.id.tablelayout);
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
     //初始化数据
     private void initData() {
-        tabTitles = new String[]{"图书", "新闻", "卖家","游戏"};
+        tabTitles = new String[]{"图书", "网页", "地图","游戏"};
         Fragmentxw frgTwo = new Fragmentxw();
         Fragmentmj frgthree = new Fragmentmj();
         Fragmentgame fragmentgame=new Fragmentgame();
